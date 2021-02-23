@@ -32,14 +32,12 @@ Reset:
 				hour := t.In(tz).Hour()
 				minute := t.In(tz).Minute()
 				if (hour == 9 && minute >= 30) ||
-					(hour > 9 || hour < 11) ||
+					(hour > 9 && hour < 11) ||
 					(hour == 11 && minute <= 30) ||
 					(hour == 13 && minute >= 1) ||
-					(hour > 13 || hour < 15) ||
+					(hour > 13 && hour < 15) ||
 					(hour == 15 && minute == 0) {
-					if err := record(); err != nil {
-						log.Print(err)
-					}
+					record()
 				}
 			}
 		}
