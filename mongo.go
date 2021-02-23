@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"log"
 	"time"
 
 	"github.com/sunshineplan/stock/capitalflows"
@@ -40,13 +42,24 @@ func record() error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	if _, err := collection.UpdateOne(
+	res, err := collection.UpdateOne(
 		ctx,
-		bson.M{"_id": time.Date(t.Year(), t.Month(), t.Day(), t.Hour(), t.Minute(), 0, 0, tz)},
+		bson.M{
+			"date": fmt.Sprintf("%04d-%02d-%02d", t.Year(), t.Month(), t.Day()),
+			"time": fmt.Sprintf("%02d:%02d", t.Hour(), t.Minute()),
+		},
 		bson.M{"$set": bson.M{"flows": flows}},
 		options.Update().SetUpsert(true),
-	); err != nil {
+	)
+	if err != nil {
 		return err
+	}
+
+	if n := res.MatchedCount; n != 0 {
+		log.Printf("Updated %d record", n)
+	}
+	if n := res.UpsertedCount; n != 0 {
+		log.Printf("Upserted %d record", n)
 	}
 
 	return nil
