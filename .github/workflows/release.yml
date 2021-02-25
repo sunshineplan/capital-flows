@@ -56,7 +56,9 @@ jobs:
         run: echo "::set-output name=date::$(TZ=CST date +'%Y-%m-%d')"
 
       - name: Build
-        run: go build -ldflags "-s -w" -o flows
+        run: |
+          go build -ldflags "-s -w" -o flows
+          go build -ldflags "-s -w" ./commit
 
       - name: Create Release
         id: create_release
@@ -82,3 +84,13 @@ jobs:
           asset_path: ./release.tar.gz
           asset_name: release.tar.gz
           asset_content_type: application/gzip
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./commit
+          asset_name: commit
+          asset_content_type: application/octet-stream
