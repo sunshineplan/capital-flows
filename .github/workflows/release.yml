@@ -58,7 +58,7 @@ jobs:
       - name: Build
         run: |
           go build -ldflags "-s -w" -o flows
-          go build -ldflags "-s -w" ./commit
+          go build -ldflags "-s -w" -o run ./commit
 
       - name: Create Release
         id: create_release
@@ -91,6 +91,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./commit
-          asset_name: commit
+          asset_path: ./run
+          asset_name: run
           asset_content_type: application/octet-stream
