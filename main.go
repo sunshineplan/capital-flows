@@ -14,7 +14,8 @@ import (
 )
 
 var meta metadata.Server
-var tz *time.Location
+var tz = time.FixedZone("CST", 8*60*60)
+var debug bool
 
 var svc = service.Service{
 	Name: "Flows",
@@ -35,12 +36,11 @@ func main() {
 	flag.StringVar(&meta.Header, "header", "", "Verify Header Header Name")
 	flag.StringVar(&meta.Value, "value", "", "Verify Header Value")
 	flag.StringVar(&svc.Options.UpdateURL, "update", "", "Update URL")
+	flag.BoolVar(&debug, "debug", false, "debug")
 	iniflags.SetConfigFile(filepath.Join(filepath.Dir(self), "config.ini"))
 	iniflags.SetAllowMissingConfigFile(true)
 	iniflags.SetAllowUnknownFlags(true)
 	iniflags.Parse()
-
-	tz, _ = time.LoadLocation("Asia/Shanghai")
 
 	if service.IsWindowsService() {
 		svc.Run(false)

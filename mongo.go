@@ -55,10 +55,10 @@ func record() error {
 		return err
 	}
 
-	if n := res.MatchedCount; n != 0 {
+	if n := res.MatchedCount; n != 0 && debug {
 		log.Printf("Updated %d record", n)
 	}
-	if n := res.UpsertedCount; n != 0 {
+	if n := res.UpsertedCount; n != 0 && debug {
 		log.Printf("Upserted %d record", n)
 	}
 

@@ -10,6 +10,10 @@ func run() {
 		log.Fatal(err)
 	}
 
+	if isTrading(time.Now()) {
+		go record()
+	}
+
 	ticker := time.NewTicker(time.Nanosecond)
 Reset:
 	for {
@@ -28,18 +32,26 @@ Reset:
 	for {
 		select {
 		case t := <-ticker.C:
-			if weekday := t.In(tz).Weekday(); weekday >= 1 && weekday <= 5 {
-				hour := t.In(tz).Hour()
-				minute := t.In(tz).Minute()
-				if (hour == 9 && minute >= 30) ||
-					(hour > 9 && hour < 11) ||
-					(hour == 11 && minute <= 30) ||
-					(hour == 13 && minute >= 1) ||
-					(hour > 13 && hour < 15) ||
-					(hour == 15 && minute == 0) {
-					record()
-				}
+			if isTrading(t) {
+				go record()
 			}
 		}
 	}
+}
+
+func isTrading(t time.Time) bool {
+	if weekday := t.In(tz).Weekday(); weekday >= 1 && weekday <= 5 {
+		hour := t.In(tz).Hour()
+		minute := t.In(tz).Minute()
+		if (hour == 9 && minute >= 30) ||
+			(hour > 9 && hour < 11) ||
+			(hour == 11 && minute <= 30) ||
+			(hour == 13 && minute >= 1) ||
+			(hour > 13 && hour < 15) ||
+			(hour == 15 && minute == 0) {
+			return true
+		}
+	}
+
+	return false
 }
