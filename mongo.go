@@ -31,10 +31,14 @@ func initDB() error {
 	return nil
 }
 
-func record() error {
+func record() {
 	flows, err := capitalflows.Fetch()
 	if err != nil {
-		return err
+		if debug {
+			log.Print(err)
+		}
+
+		return
 	}
 
 	t := time.Now().In(tz)
@@ -52,7 +56,11 @@ func record() error {
 		options.Update().SetUpsert(true),
 	)
 	if err != nil {
-		return err
+		if debug {
+			log.Print(err)
+		}
+
+		return
 	}
 
 	if n := res.MatchedCount; n != 0 && debug {
@@ -61,6 +69,4 @@ func record() error {
 	if n := res.UpsertedCount; n != 0 && debug {
 		log.Printf("Upserted %d record", n)
 	}
-
-	return nil
 }
