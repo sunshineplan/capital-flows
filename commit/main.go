@@ -89,26 +89,28 @@ func commit() error {
 				return err
 			}
 
-			b, err := json.Marshal(res)
-			if err != nil {
-				return err
-			}
-
-			tc := oauth2.NewClient(ctx, ts)
-			client := github.NewClient(tc)
-			repo := strings.Split(repository, "/")
-			fullpath := filepath.Join(append([]string{path}, strings.Split(i.Date, "-")...)...) + ".json"
-			opt := &github.RepositoryContentFileOptions{
-				Message: github.String(i.Date),
-				Content: b,
-			}
-
-			ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-			defer cancel()
-
-			if _, _, err := client.Repositories.CreateFile(ctx, repo[0], repo[1], fullpath, opt); err != nil {
-				if !strings.Contains(err.Error(), `"sha" wasn't supplied.`) {
+			if res[0].TimeLine[0]["09:30"] != res[0].TimeLine[len(res[0].TimeLine)-1]["15:00"] {
+				b, err := json.Marshal(res)
+				if err != nil {
 					return err
+				}
+
+				tc := oauth2.NewClient(ctx, ts)
+				client := github.NewClient(tc)
+				repo := strings.Split(repository, "/")
+				fullpath := filepath.Join(append([]string{path}, strings.Split(i.Date, "-")...)...) + ".json"
+				opt := &github.RepositoryContentFileOptions{
+					Message: github.String(i.Date),
+					Content: b,
+				}
+
+				ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+				defer cancel()
+
+				if _, _, err := client.Repositories.CreateFile(ctx, repo[0], repo[1], fullpath, opt); err != nil {
+					if !strings.Contains(err.Error(), `"sha" wasn't supplied.`) {
+						return err
+					}
 				}
 			}
 
