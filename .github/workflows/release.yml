@@ -58,6 +58,7 @@ jobs:
       - name: Build
         run: |
           go build -ldflags "-s -w" -o flows
+          GOOS=windows go build -ldflags "-s -w" -o flows.exe
           go build -ldflags "-s -w" -o run ./commit
 
       - name: Create Release
@@ -73,7 +74,9 @@ jobs:
           prerelease: false
 
       - name: Pack release files
-        run: tar cvzf release.tar.gz flows config.ini.default
+        run: |
+          tar cvzf release.tar.gz flows config.ini.default
+          zip -9vr release-windows.zip flows.exe config.ini.default
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
@@ -84,6 +87,16 @@ jobs:
           asset_path: ./release.tar.gz
           asset_name: release.tar.gz
           asset_content_type: application/gzip
+
+      - name: Upload Windows Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-windows.zip
+          asset_name: release-windows.zip
+          asset_content_type: application/zip
 
       - name: Upload Commit Asset
         uses: actions/upload-release-asset@v1
