@@ -18,13 +18,10 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.16'
-
-      - name: Prepare to build
-        run: go mod download
+          go-version: '1.x'
 
       - name: Delete Old Release
-        uses: actions/github-script@v3
+        uses: actions/github-script@v4
         with:
           script: |
             let release
@@ -51,59 +48,25 @@ jobs:
               ref: 'tags/v1.0'
             })
 
-      - name: Get Current Date
-        id: date
-        run: echo "::set-output name=date::$(TZ=CST date +'%Y-%m-%d')"
-
       - name: Build
+        id: build
         run: |
+          go mod download
           go build -ldflags "-s -w" -o flows
           GOOS=windows go build -ldflags "-s -w" -o flows.exe
           go build -ldflags "-s -w" -o run ./commit
+          tar cvzf release.tar.gz flows config.ini.default
+          zip -9vr release-windows.zip flows.exe config.ini.default
+          echo "::set-output name=date::$(TZ=CST date +'%Y-%m-%d')"
 
       - name: Create Release
-        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v1.0
-          release_name: ${{ steps.date.outputs.date }}
-          body: ${{ steps.date.outputs.date }}
-          draft: false
-          prerelease: false
-
-      - name: Pack release files
-        run: |
-          tar cvzf release.tar.gz flows config.ini.default
-          zip -9vr release-windows.zip flows.exe config.ini.default
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release.tar.gz
-          asset_name: release.tar.gz
-          asset_content_type: application/gzip
-
-      - name: Upload Windows Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release-windows.zip
-          asset_name: release-windows.zip
-          asset_content_type: application/zip
-
-      - name: Upload Commit Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./run
-          asset_name: run
-          asset_content_type: application/octet-stream
+          name: ${{ steps.build.outputs.date }}
+          body: ${{ steps.build.outputs.date }}
+          files: |
+            release*
+            run
