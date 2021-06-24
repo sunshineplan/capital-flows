@@ -15,26 +15,19 @@ func run() {
 	}
 
 	ticker := time.NewTicker(time.Nanosecond)
-Reset:
-	for {
-		select {
-		case t := <-ticker.C:
-			if t.Second() == 46 {
-				ticker.Stop()
-				break Reset
-			}
+	for t := range ticker.C {
+		if t.Second() == 46 {
+			ticker.Stop()
+			break
 		}
 	}
 
 	ticker = time.NewTicker(15 * time.Second)
 	defer ticker.Stop()
 
-	for {
-		select {
-		case t := <-ticker.C:
-			if isTrading(t) {
-				go record()
-			}
+	for t := range ticker.C {
+		if isTrading(t) {
+			go record()
 		}
 	}
 }
