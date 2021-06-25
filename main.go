@@ -18,9 +18,10 @@ var tz = time.FixedZone("CST", 8*60*60)
 var debug bool
 
 var svc = service.Service{
-	Name: "Flows",
-	Desc: "Auto fetching capital flows service",
-	Exec: run,
+	Name:     "Flows",
+	Desc:     "Auto fetching capital flows service",
+	Exec:     run,
+	TestExec: test,
 	Options: service.Options{
 		Dependencies: []string{"Wants=network-online.target", "After=network.target"},
 	},
@@ -49,11 +50,13 @@ func main() {
 
 	switch flag.NArg() {
 	case 0:
-		run()
+		svc.Run(false)
 	case 1:
 		switch flag.Arg(0) {
 		case "run", "debug":
-			run()
+			svc.Run(true)
+		case "test":
+			err = svc.Test()
 		case "install":
 			err = svc.Install()
 		case "remove":
