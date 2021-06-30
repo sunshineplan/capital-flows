@@ -9,5 +9,5 @@ require (
 	github.com/sunshineplan/utils v0.0.0-20210624055436-282dca1240dc
 	github.com/vharitonsky/iniflags v0.0.0-20180513140207-a33cd0b5f3de
 	go.mongodb.org/mongo-driver v1.5.3
-	golang.org/x/oauth2 v0.0.0-20210622215436-a8dc77f794b6
+	golang.org/x/oauth2 v0.0.0-20210628180205-a41e5a781914
 )

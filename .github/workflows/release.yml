@@ -57,7 +57,7 @@ jobs:
           go build -ldflags "-s -w" -o run ./commit
           tar cvzf release.tar.gz flows config.ini.default
           zip -9vr release-windows.zip flows.exe config.ini.default
-          echo "::set-output name=date::$(TZ=CST date +'%Y-%m-%d')"
+          echo "::set-output name=date::$(TZ=PRC date +'%Y-%m-%d')"
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
