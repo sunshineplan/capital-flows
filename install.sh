@@ -2,7 +2,7 @@
 
 installCapitalFlows() {
     mkdir -p /etc/flows
-    curl -Lo- https://github.com/sunshineplan/capital-flows/releases/download/v1.0/release.tar.gz | tar zxC /etc/flows
+    curl -Lo- https://github.com/sunshineplan/capital-flows/releases/latest/download/release.tar.gz | tar zxC /etc/flows
     cd /etc/flows
     chmod +x flows
 }

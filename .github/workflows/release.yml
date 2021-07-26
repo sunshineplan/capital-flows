@@ -20,6 +20,15 @@ jobs:
         with:
           go-version: '1.x'
 
+      - name: Build
+        id: build
+        run: |
+          go mod download
+          go build -ldflags "-s -w" -o flows
+          GOOS=windows go build -ldflags "-s -w" -o flows.exe
+          go build -ldflags "-s -w" -o run ./commit
+          echo "::set-output name=date::$(TZ=PRC date +'%Y-%m-%d')"
+
       - name: Delete Old Release
         uses: actions/github-script@v4
         with:
@@ -48,16 +57,10 @@ jobs:
               ref: 'tags/v1.0'
             })
 
-      - name: Build
-        id: build
+      - name: Pack
         run: |
-          go mod download
-          go build -ldflags "-s -w" -o flows
-          GOOS=windows go build -ldflags "-s -w" -o flows.exe
-          go build -ldflags "-s -w" -o run ./commit
           tar cvzf release.tar.gz flows config.ini.default
           zip -9vr release-windows.zip flows.exe config.ini.default
-          echo "::set-output name=date::$(TZ=PRC date +'%Y-%m-%d')"
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

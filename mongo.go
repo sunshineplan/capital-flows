@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/sunshineplan/stock/capitalflows"
+	"github.com/sunshineplan/utils"
 	"github.com/sunshineplan/utils/database/mongodb"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -17,7 +18,9 @@ var config mongodb.Config
 var collection *mongo.Collection
 
 func initDB() error {
-	if err := meta.Get("capitalflows_mongo", &config); err != nil {
+	if err := utils.Retry(func() error {
+		return meta.Get("capitalflows_mongo", &config)
+	}, 3, 20); err != nil {
 		return err
 	}
 
