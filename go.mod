@@ -8,6 +8,6 @@ require (
 	github.com/sunshineplan/stock v1.0.1
 	github.com/sunshineplan/utils v0.0.2
 	github.com/vharitonsky/iniflags v0.0.0-20180513140207-a33cd0b5f3de
-	go.mongodb.org/mongo-driver v1.7.0
+	go.mongodb.org/mongo-driver v1.7.1
 	golang.org/x/oauth2 v0.0.0-20210628180205-a41e5a781914
 )
