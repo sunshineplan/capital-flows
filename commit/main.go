@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/google/go-github/v35/github"
+	"github.com/sunshineplan/database/mongodb"
 	"github.com/sunshineplan/stock/capitalflows/sector"
-	"github.com/sunshineplan/utils/database/mongodb"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"golang.org/x/oauth2"
