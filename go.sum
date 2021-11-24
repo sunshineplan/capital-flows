@@ -176,12 +176,14 @@ github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/sunshineplan/database/mongodb v1.0.0 h1:LqAH9WVY1tQ+H6dW5OxAqPvBj7bN4QTkn6ZRlPqiJwY=
 github.com/sunshineplan/database/mongodb v1.0.0/go.mod h1:2JQV6hW3VwSQ3yuQKJFlhE8X4jJmq+bQ0qNY6vzhgHI=
+github.com/sunshineplan/database/mongodb/api v1.0.11 h1:iYaGecobK3042lMWeS9mY/tnWPRx1AklZHdq+F/2x5I=
+github.com/sunshineplan/database/mongodb/api v1.0.11/go.mod h1:KeRHsbS2XqTL41VPBLddkK1+6GEJZtYy5zDQ6ewLMLU=
 github.com/sunshineplan/gohttp v1.0.0 h1:1Ldr9L8pGmy8w5RSkbXUEVwzLzmc3waz9wxHTjJuhHU=
 github.com/sunshineplan/gohttp v1.0.0/go.mod h1:0S9nCy6TGyR45MLTLNs45GX5KRNyrU84BaFpz9P6508=
 github.com/sunshineplan/service v1.0.3 h1:eRisjis3IPX36yqbhFpLz+XCNyMj5835KTej70MsjRs=
 github.com/sunshineplan/service v1.0.3/go.mod h1:zQQ/Qgm5Od6y4y3P2V8Tof499lXrKNdHeYsVbXEZ738=
-github.com/sunshineplan/stock v1.0.3 h1:rcfcgRnEvFKSuod4mMSizv8QttPFJF5ZlK3NwxXjgkU=
-github.com/sunshineplan/stock v1.0.3/go.mod h1:ZHcureuWOsz3dOmGjBW/+r3tJksd7/ihXaqCGzEbHNA=
+github.com/sunshineplan/stock v1.0.4 h1:X78ypBRjGE95iSMpFBZ+vvMwpJ7o+FyTSctjzTx7J+Y=
+github.com/sunshineplan/stock v1.0.4/go.mod h1:wv01EbzkEBGGu2w+4zIHAfl13w0HBHUzm33FX1/0MPY=
 github.com/sunshineplan/utils v0.0.20 h1:OGn/ljXgxdBpOR6xOTwIsh3A9CI8OMdlEf+oIK8I9sc=
 github.com/sunshineplan/utils v0.0.20/go.mod h1:95AdNDzwlNcOSwYsCEFIzDOC/osnR3EnIeE5UmbN/SE=
 github.com/tidwall/pretty v1.0.0 h1:HsD+QiTn7sK6flMKIvNmpqz1qrpP3Ps6jOKIKMooyg4=
