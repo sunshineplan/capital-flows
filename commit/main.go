@@ -12,32 +12,31 @@ import (
 
 	"github.com/google/go-github/v35/github"
 	"github.com/sunshineplan/database/mongodb"
+	"github.com/sunshineplan/database/mongodb/driver"
 	"github.com/sunshineplan/stock/capitalflows/sector"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"golang.org/x/oauth2"
 )
 
-var config = mongodb.Config{
+var mongo = driver.Client{
 	Database:   "stock",
 	Collection: "capitalflows",
 	Username:   "capitalflows",
 	Password:   "capitalflows",
 	SRV:        true,
 }
+var client mongodb.Client
 
-var token, repository string
-var path string
-var collection *mongo.Collection
+var token, repository, path string
 
 func main() {
-	flag.StringVar(&config.Server, "mongo", "", "MongoDB Server")
+	flag.StringVar(&mongo.Server, "mongo", "", "MongoDB Server")
 	flag.StringVar(&token, "token", "", "token")
 	flag.StringVar(&repository, "repo", "", "repository")
 	flag.StringVar(&path, "path", "", "data path")
 	flag.Parse()
 
-	if err := connect(); err != nil {
+	client = &mongo
+	if err := client.Connect(); err != nil {
 		log.Fatal(err)
 	}
 
@@ -46,33 +45,11 @@ func main() {
 	}
 }
 
-func connect() error {
-	client, err := config.Open()
-	if err != nil {
-		return err
-	}
-
-	collection = client.Database(config.Database).Collection(config.Collection)
-
-	return nil
-}
-
 func commit() error {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	cur, err := collection.Aggregate(ctx, []interface{}{bson.M{"$group": bson.M{"_id": "$date"}}})
-	if err != nil {
-		return err
-	}
-
-	ctx, cancel = context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
 	var date []struct {
-		Date string `bson:"_id"`
+		Date string `json:"_id" bson:"_id"`
 	}
-	if err := cur.All(ctx, &date); err != nil {
+	if err := client.Aggregate([]mongodb.M{{"$group": mongodb.M{"_id": "$date"}}}, &date); err != nil {
 		return err
 	}
 
@@ -84,7 +61,7 @@ func commit() error {
 
 	for _, i := range date {
 		if i.Date != today {
-			res, err := sector.GetTimeLine(i.Date, collection)
+			res, err := sector.GetTimeLine(i.Date, client)
 			if err != nil {
 				return err
 			}
@@ -95,6 +72,9 @@ func commit() error {
 					return err
 				}
 
+				ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+				defer cancel()
+
 				tc := oauth2.NewClient(ctx, ts)
 				client := github.NewClient(tc)
 				repo := strings.Split(repository, "/")
@@ -103,9 +83,6 @@ func commit() error {
 					Message: github.String(i.Date),
 					Content: b,
 				}
-
-				ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-				defer cancel()
 
 				if _, _, err := client.Repositories.CreateFile(ctx, repo[0], repo[1], fullpath, opt); err != nil {
 					if !strings.Contains(err.Error(), `"sha" wasn't supplied.`) {
@@ -116,7 +93,7 @@ func commit() error {
 
 			d, _ := time.ParseInLocation("2006-01-02", i.Date, tz)
 			if t.Sub(d).Hours() > 7*24 {
-				if err := delete(i.Date); err != nil {
+				if _, err := client.DeleteMany(mongodb.M{"date": i.Date}); err != nil {
 					return err
 				}
 			}
@@ -124,13 +101,4 @@ func commit() error {
 	}
 
 	return nil
-}
-
-func delete(date string) error {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	_, err := collection.DeleteMany(ctx, bson.M{"date": date})
-
-	return err
 }

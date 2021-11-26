@@ -1,37 +1,28 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"time"
 
 	"github.com/sunshineplan/database/mongodb"
+	"github.com/sunshineplan/database/mongodb/driver"
 	"github.com/sunshineplan/stock/capitalflows"
 	"github.com/sunshineplan/utils"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var config mongodb.Config
-var collection *mongo.Collection
+var client mongodb.Client
 
 func initDB() error {
+	var mongo driver.Client
 	if err := utils.Retry(func() error {
-		return meta.Get("capitalflows_mongo", &config)
+		return meta.Get("capitalflows_mongo", &mongo)
 	}, 3, 20); err != nil {
 		return err
 	}
+	client = &mongo
 
-	client, err := config.Open()
-	if err != nil {
-		return err
-	}
-
-	collection = client.Database(config.Database).Collection(config.Collection)
-
-	return nil
+	return client.Connect()
 }
 
 func record() {
@@ -46,17 +37,16 @@ func record() {
 
 	t := time.Now().In(tz)
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	res, err := collection.UpdateOne(
-		ctx,
-		bson.M{
-			"date": fmt.Sprintf("%04d-%02d-%02d", t.Year(), t.Month(), t.Day()),
-			"time": fmt.Sprintf("%02d:%02d", t.Hour(), t.Minute()),
+	res, err := client.UpdateOne(
+		struct {
+			Date string `json:"date" bson:"date"`
+			Time string `json:"time" bson:"time"`
+		}{
+			fmt.Sprintf("%04d-%02d-%02d", t.Year(), t.Month(), t.Day()),
+			fmt.Sprintf("%02d:%02d", t.Hour(), t.Minute()),
 		},
-		bson.M{"$set": bson.M{"flows": flows}},
-		options.Update().SetUpsert(true),
+		mongodb.M{"$set": mongodb.M{"flows": flows}},
+		&mongodb.UpdateOpt{Upsert: true},
 	)
 	if err != nil {
 		if debug {
