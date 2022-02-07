@@ -8,7 +8,7 @@ require (
 	github.com/sunshineplan/database/mongodb/driver v1.0.2
 	github.com/sunshineplan/service v1.0.3
 	github.com/sunshineplan/stock v1.0.6
-	github.com/sunshineplan/utils v0.0.31
+	github.com/sunshineplan/utils v0.0.32
 	github.com/vharitonsky/iniflags v0.0.0-20180513140207-a33cd0b5f3de
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
 )
