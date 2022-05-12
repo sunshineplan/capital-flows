@@ -8,14 +8,14 @@ import (
 	"github.com/sunshineplan/database/mongodb"
 	"github.com/sunshineplan/database/mongodb/driver"
 	"github.com/sunshineplan/stock/capitalflows"
-	"github.com/sunshineplan/utils"
+	"github.com/sunshineplan/utils/retry"
 )
 
 var client mongodb.Client
 
 func initDB() error {
 	var mongo driver.Client
-	if err := utils.Retry(func() error {
+	if err := retry.Do(func() error {
 		return meta.Get("capitalflows_mongo", &mongo)
 	}, 3, 20); err != nil {
 		return err
