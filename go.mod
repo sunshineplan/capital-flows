@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/google/go-github/v35 v35.3.0
-	github.com/sunshineplan/database/mongodb v1.0.4
+	github.com/sunshineplan/database/mongodb v1.0.5
 	github.com/sunshineplan/database/mongodb/driver v1.0.2
 	github.com/sunshineplan/service v1.0.4
 	github.com/sunshineplan/stock v1.0.7
