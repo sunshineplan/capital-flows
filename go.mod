@@ -6,7 +6,7 @@ require (
 	github.com/google/go-github/v35 v35.3.0
 	github.com/sunshineplan/database/mongodb v1.0.5
 	github.com/sunshineplan/database/mongodb/driver v1.0.2
-	github.com/sunshineplan/service v1.0.4
+	github.com/sunshineplan/service v1.0.5
 	github.com/sunshineplan/stock v1.0.7
 	github.com/sunshineplan/utils v0.1.5
 	github.com/vharitonsky/iniflags v0.0.0-20180513140207-a33cd0b5f3de
@@ -29,7 +29,7 @@ require (
 	golang.org/x/crypto v0.0.0-20220511200225-c6db032c6c88 // indirect
 	golang.org/x/net v0.0.0-20220425223048-2871e0cb64e4 // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20220627191245-f75cf1eec38b // indirect
+	golang.org/x/sys v0.0.0-20220825204002-c680a09ffe64 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
