@@ -9,7 +9,7 @@ require (
 	github.com/sunshineplan/metadata v1.1.0
 	github.com/sunshineplan/service v1.0.5
 	github.com/sunshineplan/stock v1.0.8
-	github.com/sunshineplan/utils v0.1.10
+	github.com/sunshineplan/utils v0.1.12
 	github.com/vharitonsky/iniflags v0.0.0-20180513140207-a33cd0b5f3de
 	golang.org/x/oauth2 v0.3.0
 )
