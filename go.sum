@@ -63,8 +63,8 @@ github.com/sunshineplan/service v1.0.5 h1:xKXV45AIvTBaSgz1WJM84t8TLsvbvhUc/ysfh/
 github.com/sunshineplan/service v1.0.5/go.mod h1:QghA3gsLU71EeiiKIhMUXnApnUdVvtC5nSsZl9jvNfw=
 github.com/sunshineplan/stock v1.0.8 h1:Uxl1PqWAouv1g5tFYaun8jS3Ju1xQZFjlqTwoR4YyHo=
 github.com/sunshineplan/stock v1.0.8/go.mod h1:OY92uVrFPaijaVQibk+tC4iJraHnGFmqQTs03sdfU8U=
-github.com/sunshineplan/utils v0.1.12 h1:itfgZOTDOWsLf6Kmm2AI1g8xE5NNYP1TSIRQxtjMOiM=
-github.com/sunshineplan/utils v0.1.12/go.mod h1:HfKwfZdb8gYzo451GrkSqdNQE6xVRtdLJ6gZV5XRaC4=
+github.com/sunshineplan/utils v0.1.13 h1:SGPizpxNvDUVx3JAdfJazI70iPeLVVdGirN3cJGtlB8=
+github.com/sunshineplan/utils v0.1.13/go.mod h1:HfKwfZdb8gYzo451GrkSqdNQE6xVRtdLJ6gZV5XRaC4=
 github.com/tidwall/pretty v1.0.0 h1:HsD+QiTn7sK6flMKIvNmpqz1qrpP3Ps6jOKIKMooyg4=
 github.com/tidwall/pretty v1.0.0/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=
 github.com/vharitonsky/iniflags v0.0.0-20180513140207-a33cd0b5f3de h1:fkw+7JkxF3U1GzQoX9h69Wvtvxajo5Rbzy6+YMMzPIg=
