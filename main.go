@@ -10,7 +10,7 @@ import (
 
 	"github.com/sunshineplan/metadata"
 	"github.com/sunshineplan/service"
-	"github.com/vharitonsky/iniflags"
+	"github.com/sunshineplan/utils/flags"
 )
 
 var meta metadata.Server
@@ -38,10 +38,8 @@ func main() {
 	flag.StringVar(&meta.Value, "value", "", "Verify Header Value")
 	flag.StringVar(&svc.Options.UpdateURL, "update", "", "Update URL")
 	flag.BoolVar(&debug, "debug", false, "debug")
-	iniflags.SetConfigFile(filepath.Join(filepath.Dir(self), "config.ini"))
-	iniflags.SetAllowMissingConfigFile(true)
-	iniflags.SetAllowUnknownFlags(true)
-	iniflags.Parse()
+	flags.SetConfigFile(filepath.Join(filepath.Dir(self), "config.ini"))
+	flags.Parse()
 
 	if service.IsWindowsService() {
 		svc.Run(false)

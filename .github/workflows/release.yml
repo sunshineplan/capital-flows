@@ -24,7 +24,6 @@ jobs:
         id: build
         run: |
           go build -ldflags "-s -w" -o flows
-          GOOS=windows go build -ldflags "-s -w" -o flows.exe
           go build -ldflags "-s -w" -o run ./commit
           echo "date=$(TZ=PRC date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
@@ -57,9 +56,7 @@ jobs:
             })
 
       - name: Pack
-        run: |
-          tar cvzf release.tar.gz flows config.ini.default
-          zip -9vr release-windows.zip flows.exe config.ini.default
+        run: tar cvzf release.tar.gz flows config.ini.default
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

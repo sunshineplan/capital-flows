@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/sunshineplan/stock/capitalflows"
+	"github.com/sunshineplan/utils/scheduler"
 )
 
 func test() (err error) {
@@ -35,21 +36,14 @@ func run() {
 		go record()
 	}
 
-	ticker := time.NewTicker(time.Nanosecond)
-	for t := range ticker.C {
-		if t.Second() == 46 {
-			ticker.Stop()
-			break
-		}
-	}
-
-	ticker = time.NewTicker(15 * time.Second)
-	defer ticker.Stop()
-
-	for t := range ticker.C {
-		if isTrading(t) {
-			go record()
-		}
+	if err := scheduler.NewScheduler().
+		At(scheduler.Second(5), scheduler.Second(20), scheduler.Second(35), scheduler.Second(50)).
+		Do(func(t time.Time) {
+			if isTrading(t) {
+				go record()
+			}
+		}); err != nil {
+		log.Fatal(err)
 	}
 }
 
