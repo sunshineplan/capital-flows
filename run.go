@@ -37,7 +37,7 @@ func run() {
 	}
 
 	if err := scheduler.NewScheduler().
-		At(scheduler.Second(5), scheduler.Second(20), scheduler.Second(35), scheduler.Second(50)).
+		At(scheduler.AtSecond(5), scheduler.AtSecond(20), scheduler.AtSecond(35), scheduler.AtSecond(50)).
 		Do(func(t time.Time) {
 			if isTrading(t) {
 				go record()
