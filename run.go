@@ -45,6 +45,7 @@ func run() {
 		}); err != nil {
 		log.Fatal(err)
 	}
+	select {}
 }
 
 func isTrading(t time.Time) bool {
