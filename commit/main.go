@@ -29,7 +29,7 @@ var (
 )
 
 var (
-	tz, _ = time.LoadLocation("Asia/Shanghai")
+	tz    = time.FixedZone("CST", 8*60*60)
 	now   = time.Now().In(tz)
 	today = now.Format("2006-01-02")
 )

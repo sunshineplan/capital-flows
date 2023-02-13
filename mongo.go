@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"time"
 
@@ -11,55 +10,49 @@ import (
 	"github.com/sunshineplan/utils/retry"
 )
 
-var client mongodb.Client
+var client driver.Client
 
 func initDB() error {
-	var mongo driver.Client
 	if err := retry.Do(func() error {
-		return meta.Get("capitalflows_mongo", &mongo)
+		return meta.Get("capitalflows_mongo", &client)
 	}, 3, 20); err != nil {
 		return err
 	}
-	client = &mongo
-
 	return client.Connect()
 }
 
 func record() {
 	flows, err := capitalflows.Fetch()
 	if err != nil {
-		if debug {
+		if *debug {
 			log.Print(err)
 		}
-
 		return
 	}
 
-	t := time.Now().In(tz)
-
+	now := time.Now()
 	res, err := client.UpdateOne(
 		struct {
 			Date string `json:"date" bson:"date"`
 			Time string `json:"time" bson:"time"`
 		}{
-			fmt.Sprintf("%04d-%02d-%02d", t.Year(), t.Month(), t.Day()),
-			fmt.Sprintf("%02d:%02d", t.Hour(), t.Minute()),
+			now.Format("2006-01-02"),
+			now.Format("15:04"),
 		},
 		mongodb.M{"$set": mongodb.M{"flows": flows}},
 		&mongodb.UpdateOpt{Upsert: true},
 	)
 	if err != nil {
-		if debug {
+		if *debug {
 			log.Print(err)
 		}
-
 		return
 	}
 
-	if n := res.MatchedCount; n != 0 && debug {
+	if n := res.MatchedCount; n != 0 && *debug {
 		log.Printf("Updated %d record", n)
 	}
-	if n := res.UpsertedCount; n != 0 && debug {
+	if n := res.UpsertedCount; n != 0 && *debug {
 		log.Printf("Upserted %d record", n)
 	}
 }

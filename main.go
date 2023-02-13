@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"time"
 
 	"github.com/sunshineplan/metadata"
 	"github.com/sunshineplan/service"
@@ -14,8 +13,6 @@ import (
 )
 
 var meta metadata.Server
-var tz = time.FixedZone("CST", 8*60*60)
-var debug bool
 
 var svc = service.Service{
 	Name:     "Flows",
@@ -27,6 +24,8 @@ var svc = service.Service{
 	},
 }
 
+var debug = flag.Bool("debug", false, "debug")
+
 func main() {
 	self, err := os.Executable()
 	if err != nil {
@@ -37,7 +36,6 @@ func main() {
 	flag.StringVar(&meta.Header, "header", "", "Verify Header Header Name")
 	flag.StringVar(&meta.Value, "value", "", "Verify Header Value")
 	flag.StringVar(&svc.Options.UpdateURL, "update", "", "Update URL")
-	flag.BoolVar(&debug, "debug", false, "debug")
 	flags.SetConfigFile(filepath.Join(filepath.Dir(self), "config.ini"))
 	flags.Parse()
 
