@@ -53,8 +53,8 @@ github.com/sunshineplan/service v1.0.6 h1:83NxPW6JOKxtOCx+3goqHyTto2AYgJ4oQaz8gM
 github.com/sunshineplan/service v1.0.6/go.mod h1:++97KQ1jLRdPFAcnWSTUzs6fd1qboaGMgbMaA7zh9Lc=
 github.com/sunshineplan/stock v1.0.8 h1:Uxl1PqWAouv1g5tFYaun8jS3Ju1xQZFjlqTwoR4YyHo=
 github.com/sunshineplan/stock v1.0.8/go.mod h1:OY92uVrFPaijaVQibk+tC4iJraHnGFmqQTs03sdfU8U=
-github.com/sunshineplan/utils v0.1.24 h1:F0xosqll+bbZ8Xo37JQACjNNd//37Fl2L1pdH7Jpuq8=
-github.com/sunshineplan/utils v0.1.24/go.mod h1:Wx+eubdt52Vl0l7U6gGjtP6VGrA5jqLeqWNDckGXL8I=
+github.com/sunshineplan/utils v0.1.27 h1:ZcL9qktK5VdyWRB20VxAQCL5ULls9mRM1wnMd9RBwuQ=
+github.com/sunshineplan/utils v0.1.27/go.mod h1:Wx+eubdt52Vl0l7U6gGjtP6VGrA5jqLeqWNDckGXL8I=
 github.com/tidwall/pretty v1.0.0 h1:HsD+QiTn7sK6flMKIvNmpqz1qrpP3Ps6jOKIKMooyg4=
 github.com/tidwall/pretty v1.0.0/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=
 github.com/xdg-go/pbkdf2 v1.0.0 h1:Su7DPu48wXMwC3bs7MCNG+z4FhcyEuz5dlvchbq0B0c=
