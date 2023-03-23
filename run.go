@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/sunshineplan/stock/capitalflows"
@@ -27,13 +26,13 @@ func test() (err error) {
 	return
 }
 
-func run() {
+func run() error {
 	if err := initDB(); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	if err := scheduler.NewScheduler().AtCondition(
-		scheduler.Workdays,
+		scheduler.Weekdays,
 		scheduler.MultiSchedule(
 			scheduler.ClockSchedule(scheduler.AtClock(9, 30, 0), scheduler.AtClock(11, 30, 0), 15*time.Second),
 			scheduler.ClockSchedule(scheduler.AtClock(13, 0, 1), scheduler.AtHour(15), 15*time.Second),
@@ -41,7 +40,9 @@ func run() {
 	).Do(func(_ time.Time) {
 		record()
 	}); err != nil {
-		log.Fatal(err)
+		return err
 	}
-	select {}
+
+	scheduler.Forever()
+	return nil
 }

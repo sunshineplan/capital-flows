@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"time"
 
 	"github.com/sunshineplan/database/mongodb"
@@ -25,7 +24,7 @@ func record() {
 	flows, err := capitalflows.Fetch()
 	if err != nil {
 		if *debug {
-			log.Print(err)
+			svc.Print(err)
 		}
 		return
 	}
@@ -44,15 +43,15 @@ func record() {
 	)
 	if err != nil {
 		if *debug {
-			log.Print(err)
+			svc.Print(err)
 		}
 		return
 	}
 
 	if n := res.MatchedCount; n != 0 && *debug {
-		log.Printf("Updated %d record", n)
+		svc.Printf("Updated %d record", n)
 	}
 	if n := res.UpsertedCount; n != 0 && *debug {
-		log.Printf("Upserted %d record", n)
+		svc.Printf("Upserted %d record", n)
 	}
 }

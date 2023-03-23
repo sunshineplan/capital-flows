@@ -65,13 +65,13 @@ func main() {
 func commit(res []date) error {
 	for _, i := range res {
 		if i.Date != today {
-			res, err := sector.GetTimeLine(i.Date, &client)
+			res, err := sector.GetSectors(i.Date, &client)
 			if err != nil {
 				return err
 			}
 
-			if res[0].TimeLine[0]["09:30"] != res[0].TimeLine[len(res[0].TimeLine)-1]["15:00"] {
-				b, err := json.Marshal(res)
+			if tl := res.TimeLines(); tl[0].TimeLine[0]["09:30"] != tl[0].TimeLine[len(tl[0].TimeLine)-1]["15:00"] {
+				b, err := json.Marshal(tl)
 				if err != nil {
 					return err
 				}
