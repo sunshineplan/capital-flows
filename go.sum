@@ -45,8 +45,8 @@ github.com/sunshineplan/gohttp v1.0.5 h1:wScgs9Bl0a8rafLXPeNnNsMTG3qn5LNWkoWvkKv
 github.com/sunshineplan/gohttp v1.0.5/go.mod h1:zSxRKlkbXY/5yRDQsrV3dXGCQBZNp1t4QqC5LHkg3bg=
 github.com/sunshineplan/metadata v1.1.1 h1:nlufF4CnAgwenW/Esi4iK6uGVxval/PdtV6Wrza/Wic=
 github.com/sunshineplan/metadata v1.1.1/go.mod h1:ENxneH9PDpQuw3IVJMu38rkfS1p+KVG4pddySkEEDSU=
-github.com/sunshineplan/service v1.0.11 h1:s9/e0bg8/URUFNym3qYF0jdzkoUnEvmqOWzbW7sdswo=
-github.com/sunshineplan/service v1.0.11/go.mod h1:XmiLeC4HnlHgwgcn6LhfUctBXGNh9cBkJk5auYKH+Wc=
+github.com/sunshineplan/service v1.0.12 h1:McJnGuPNRZOFFjMVJPpH9dpD8dvb6o+oCSPIVIJwAow=
+github.com/sunshineplan/service v1.0.12/go.mod h1:XmiLeC4HnlHgwgcn6LhfUctBXGNh9cBkJk5auYKH+Wc=
 github.com/sunshineplan/stock v1.0.11 h1:K5U8jIDcQSaVqjPytsUqrTrcctbCW9RSx7RwW8e4jO4=
 github.com/sunshineplan/stock v1.0.11/go.mod h1:Oo3z2dhhau+bgSUc94bwFB++wLcXgFHihV/gBDJ/vtQ=
 github.com/sunshineplan/utils v0.1.29 h1:wCBKPVp9XF2tUC6IX2e1bDgKrCOfgLxS5cFdUQ5mZc0=
