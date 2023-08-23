@@ -4,7 +4,6 @@ import (
 	"flag"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/sunshineplan/metadata"
 	"github.com/sunshineplan/service"
@@ -41,24 +40,7 @@ func main() {
 	flags.SetConfigFile(filepath.Join(filepath.Dir(self), "config.ini"))
 	flags.Parse()
 
-	if service.IsWindowsService() {
-		svc.Run()
-		return
-	}
-
-	switch flag.NArg() {
-	case 0:
-		svc.Run()
-	case 1:
-		cmd := flag.Arg(0)
-		var ok bool
-		if ok, err = svc.Command(cmd); !ok {
-			svc.Fatalln("Unknown argument:", cmd)
-		}
-	default:
-		svc.Fatalln("Unknown arguments:", strings.Join(flag.Args(), " "))
-	}
-	if err != nil {
-		svc.Fatalf("failed to %s: %v", flag.Arg(0), err)
+	if err := svc.ParseAndRun(flag.Args()); err != nil {
+		svc.Fatal(err)
 	}
 }
