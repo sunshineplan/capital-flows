@@ -6,9 +6,9 @@ require (
 	github.com/sunshineplan/database/mongodb v1.0.5
 	github.com/sunshineplan/database/mongodb/driver v1.0.2
 	github.com/sunshineplan/metadata v1.1.1
-	github.com/sunshineplan/service v1.0.13
+	github.com/sunshineplan/service v1.0.14
 	github.com/sunshineplan/stock v1.0.12
-	github.com/sunshineplan/utils v0.1.46
+	github.com/sunshineplan/utils v0.1.51
 )
 
 require (
@@ -30,6 +30,6 @@ require (
 	golang.org/x/crypto v0.7.0 // indirect
 	golang.org/x/net v0.9.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 )
