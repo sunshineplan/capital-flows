@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log/slog"
 	"os"
 	"path/filepath"
 
@@ -39,6 +40,10 @@ func main() {
 	flag.StringVar(&svc.Options.UpdateURL, "update", "", "Update URL")
 	flags.SetConfigFile(filepath.Join(filepath.Dir(self), "config.ini"))
 	flags.Parse()
+
+	if *debug {
+		svc.SetLevel(slog.LevelDebug)
+	}
 
 	if err := svc.ParseAndRun(flag.Args()); err != nil {
 		svc.Fatal(err)

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/sunshineplan/database/mongodb"
@@ -23,9 +24,7 @@ func initDB() error {
 func record() {
 	flows, err := capitalflows.Fetch()
 	if err != nil {
-		if *debug {
-			svc.Print(err)
-		}
+		svc.Debug(err.Error())
 		return
 	}
 
@@ -42,16 +41,14 @@ func record() {
 		&mongodb.UpdateOpt{Upsert: true},
 	)
 	if err != nil {
-		if *debug {
-			svc.Print(err)
-		}
+		svc.Debug(err.Error())
 		return
 	}
 
-	if n := res.MatchedCount; n != 0 && *debug {
-		svc.Printf("Updated %d record", n)
+	if n := res.MatchedCount; n != 0 {
+		svc.Debug(fmt.Sprintf("Updated %d record", n))
 	}
-	if n := res.UpsertedCount; n != 0 && *debug {
-		svc.Printf("Upserted %d record", n)
+	if n := res.UpsertedCount; n != 0 {
+		svc.Debug(fmt.Sprintf("Upserted %d record", n))
 	}
 }
