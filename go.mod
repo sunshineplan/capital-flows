@@ -3,7 +3,7 @@ module capital-flows
 go 1.22
 
 require (
-	github.com/sunshineplan/database/mongodb v1.0.5
+	github.com/sunshineplan/database/mongodb v1.0.6
 	github.com/sunshineplan/database/mongodb/driver v1.0.2
 	github.com/sunshineplan/metadata v1.1.1
 	github.com/sunshineplan/service v1.0.20
