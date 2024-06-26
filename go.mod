@@ -6,7 +6,7 @@ require (
 	github.com/sunshineplan/database/mongodb v1.0.6
 	github.com/sunshineplan/database/mongodb/driver v1.0.3
 	github.com/sunshineplan/metadata v1.1.1
-	github.com/sunshineplan/service v1.0.20
+	github.com/sunshineplan/service v1.0.21
 	github.com/sunshineplan/stock v1.0.13
 	github.com/sunshineplan/utils v0.1.70
 )
@@ -27,6 +27,6 @@ require (
 	go.mongodb.org/mongo-driver v1.15.0 // indirect
 	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )
