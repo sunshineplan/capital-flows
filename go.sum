@@ -34,8 +34,8 @@ github.com/sunshineplan/service v1.0.21 h1:UXYaWwLVMeG5cZ40vlxVQLpymuSesCZK8ADn7
 github.com/sunshineplan/service v1.0.21/go.mod h1:dZtX1ktoLwftAH+p7Pve4xbaQyRuzFq1j8m1HStMsso=
 github.com/sunshineplan/stock v1.0.13 h1:mQ5itujzgwNE0Jiic6Nx3R/O3YbG12usY44JWJ+Zcl0=
 github.com/sunshineplan/stock v1.0.13/go.mod h1:eObUojaLba/mmwUazeo5ykUIeZpcMTKZjsIrt2DKk6c=
-github.com/sunshineplan/utils v0.1.70 h1:xwTrUGDAyWCGwcMpi9UZwsp3xYzy6fZQButJrFoomkk=
-github.com/sunshineplan/utils v0.1.70/go.mod h1:QMe2vCEFq9VliPac8WfXndi5jP0ZrPHus8wvJlgBy5M=
+github.com/sunshineplan/utils v0.1.71 h1:FTe6qAdevePih+hLil1KvKhMAU2Bp+qHTtlO0wxoAYI=
+github.com/sunshineplan/utils v0.1.71/go.mod h1:QMe2vCEFq9VliPac8WfXndi5jP0ZrPHus8wvJlgBy5M=
 github.com/xdg-go/pbkdf2 v1.0.0 h1:Su7DPu48wXMwC3bs7MCNG+z4FhcyEuz5dlvchbq0B0c=
 github.com/xdg-go/pbkdf2 v1.0.0/go.mod h1:jrpuAogTd400dnrH08LKmI/xc1MbPOebTwRqcT5RDeI=
 github.com/xdg-go/scram v1.1.2 h1:FHX5I5B4i4hKRVRBCFRxq1iQRej7WO3hhBuJf+UUySY=
