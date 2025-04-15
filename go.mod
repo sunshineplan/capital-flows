@@ -1,7 +1,6 @@
 module capital-flows
 
-go 1.23
-toolchain go1.24.1
+go 1.24
 
 require (
 	github.com/sunshineplan/database/mongodb v1.0.13
