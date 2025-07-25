@@ -37,7 +37,7 @@ func run() error {
 			scheduler.ClockSchedule(scheduler.AtClock(9, 30, 0), scheduler.AtClock(11, 30, 0), 15*time.Second),
 			scheduler.ClockSchedule(scheduler.AtClock(13, 0, 1), scheduler.AtHour(15), 15*time.Second),
 		),
-	).Do(func(_ time.Time) {
+	).Do(func(scheduler.Event) {
 		record()
 	}); err != nil {
 		return err
