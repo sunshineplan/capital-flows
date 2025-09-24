@@ -7,7 +7,7 @@ require (
 	github.com/sunshineplan/metadata v1.1.2
 	github.com/sunshineplan/service v1.0.22
 	github.com/sunshineplan/stock v1.0.15
-	github.com/sunshineplan/utils v0.1.79
+	github.com/sunshineplan/utils v0.1.80
 )
 
 require (
