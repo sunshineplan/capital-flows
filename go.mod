@@ -5,7 +5,7 @@ go 1.25
 require (
 	github.com/sunshineplan/database/mongodb v1.0.14
 	github.com/sunshineplan/metadata v1.1.2
-	github.com/sunshineplan/service v1.0.22
+	github.com/sunshineplan/service v1.0.23
 	github.com/sunshineplan/stock v1.0.15
 	github.com/sunshineplan/utils v0.1.81
 )
@@ -23,6 +23,6 @@ require (
 	go.mongodb.org/mongo-driver/v2 v2.2.3 // indirect
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/sync v0.12.0 // indirect
-	golang.org/x/sys v0.32.0 // indirect
+	golang.org/x/sys v0.37.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
 )
