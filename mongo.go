@@ -15,7 +15,7 @@ var client driver.Client
 func initDB() error {
 	if err := retry.Do(func() error {
 		return meta.Get("capitalflows_mongo", &client)
-	}, 3, 20); err != nil {
+	}, 3, 20*time.Second); err != nil {
 		return err
 	}
 	return client.Connect()
