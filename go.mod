@@ -5,9 +5,9 @@ go 1.25
 require (
 	github.com/sunshineplan/database/mongodb v1.0.14
 	github.com/sunshineplan/metadata v1.1.2
-	github.com/sunshineplan/service v1.0.22
-	github.com/sunshineplan/stock v1.0.15
-	github.com/sunshineplan/utils v0.1.81
+	github.com/sunshineplan/service v1.0.24
+	github.com/sunshineplan/stock v1.0.16
+	github.com/sunshineplan/utils v0.1.82
 )
 
 require (
@@ -16,13 +16,15 @@ require (
 	github.com/pschlump/AesCCM v0.0.0-20160925022350-c5df73b5834e // indirect
 	github.com/pschlump/ansi v1.0.9 // indirect
 	github.com/sunshineplan/cipher v1.0.7 // indirect
+	github.com/sunshineplan/gohttp v1.0.12 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20240726163527-a2c0da244d78 // indirect
 	go.mongodb.org/mongo-driver/v2 v2.2.3 // indirect
-	golang.org/x/crypto v0.36.0 // indirect
-	golang.org/x/sync v0.12.0 // indirect
-	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/text v0.23.0 // indirect
+	golang.org/x/crypto v0.41.0 // indirect
+	golang.org/x/net v0.43.0 // indirect
+	golang.org/x/sync v0.16.0 // indirect
+	golang.org/x/sys v0.37.0 // indirect
+	golang.org/x/text v0.28.0 // indirect
 )
