@@ -5,18 +5,21 @@ go 1.25
 require (
 	github.com/sunshineplan/database/mongodb v1.0.14
 	github.com/sunshineplan/metadata v1.1.2
-	github.com/sunshineplan/service v1.0.24
+	github.com/sunshineplan/service v1.0.25
 	github.com/sunshineplan/stock v1.0.17
-	github.com/sunshineplan/utils v0.1.82
+	github.com/sunshineplan/utils v0.1.83
 )
 
 require (
+	github.com/clipperhouse/uax29/v2 v2.2.0 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
+	github.com/mattn/go-runewidth v0.0.19 // indirect
 	github.com/pschlump/AesCCM v0.0.0-20160925022350-c5df73b5834e // indirect
 	github.com/pschlump/ansi v1.0.9 // indirect
 	github.com/sunshineplan/cipher v1.0.7 // indirect
 	github.com/sunshineplan/gohttp v1.0.12 // indirect
+	github.com/sunshineplan/progressbar v1.0.1 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
