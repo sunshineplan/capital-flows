@@ -65,24 +65,33 @@ func main() {
 func commit(res []date) error {
 	for _, i := range res {
 		if i.Date != today {
+			log.Print(i.Date)
 			res, err := sector.GetSectors(i.Date, &client)
 			if err != nil {
 				return err
 			}
+			tl := res.TimeLines()
+			m := make(map[int64]struct{})
+			for _, i := range tl[0].TimeLine {
+				for _, v := range i {
+					m[v] = struct{}{}
+				}
+			}
+			if len(m) == 1 {
+				continue
+			}
 
-			if tl := res.TimeLines(); tl[0].TimeLine[0]["09:30"] != tl[0].TimeLine[len(tl[0].TimeLine)-1]["15:00"] {
-				b, err := json.Marshal(tl)
-				if err != nil {
-					return err
-				}
+			b, err := json.Marshal(tl)
+			if err != nil {
+				return err
+			}
 
-				fullpath := filepath.Join(append([]string{*path}, strings.Split(i.Date, "-")...)...) + ".json"
-				if err := os.MkdirAll(filepath.Dir(fullpath), 0755); err != nil {
-					return err
-				}
-				if err := os.WriteFile(fullpath, b, 0644); err != nil {
-					return err
-				}
+			fullpath := filepath.Join(append([]string{*path}, strings.Split(i.Date, "-")...)...) + ".json"
+			if err := os.MkdirAll(filepath.Dir(fullpath), 0755); err != nil {
+				return err
+			}
+			if err := os.WriteFile(fullpath, b, 0644); err != nil {
+				return err
 			}
 		}
 	}
